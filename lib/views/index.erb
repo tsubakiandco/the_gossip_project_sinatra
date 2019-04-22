@@ -1,0 +1,17 @@
+<html>
+    <head>
+        <title>The Gossip Project</title>
+    </head>
+    <body>
+        <h1>TOP STORIES, HOT TOPICS !</h1>
+        <p> You heard a rumour and want to share it with us? <a href="/gossips/new/">HERE</a> you can add a gossip. </p>
+        <% gossip.each_with_index do |gossip, i| %>
+             <a href="/gossips/<%= i + 1 %>">
+            <p>
+            <%= gossip.author %><br/>
+            <%= gossip.content %>
+            </p>
+             </a>
+        <% end %>
+    </body>
+</html>
