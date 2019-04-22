@@ -8,19 +8,19 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/gossips/new/' do
-    erb :new_gossip
+    erb :new_gossip #Affiche la page de formulaire de potins.
   end
 
-  post '/gossips/new/' do
+  post '/gossips/new/' do #Sauvegarde les donnees du formulaire dans un fichier CSV
     Gossip.new(params["gossip_author"], params["gossip_content"]).save
     redirect '/'
   end
   
-  get '/gossips/:id' do 
+  get '/gossips/:id' do #Affiche la page de chaque gossip en fonction de son ID
     erb :gossip_page, locals: {gossip: Gossip.find(params["id"]), id: params["id"]}
   end
-
-  get '/gossips/:id/edit' do
+  
+  get '/gossips/:id/edit' do  #Affiche la page de nodification du gossip.
     erb :edit, locals: {id: params["id"]}
   end
 

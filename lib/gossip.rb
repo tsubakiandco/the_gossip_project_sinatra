@@ -9,7 +9,7 @@ class Gossip
     @content = content
   end 
 
-  def save
+  def save #Cette methode enregistre chaque entree dans le fichier CSV.
     CSV.open("./db/gossip.csv", "ab") do |csv|
       csv << [@author,@content]
     end
@@ -23,25 +23,14 @@ class Gossip
     return all_gossips
   end
 
-def self.find(id)
-  all_gossips = self.all
-  all_gossips[id.to_i - 1]
-end
+  def self.find(id) #Permet de trouver mieux le gossip grace a son index ou ID
+    all_gossips = self.all
+    all_gossips[id.to_i - 1]
+  end
 
-def self.edit(id, gossip_new_author, gossip_new_content)
-  all_gossips = self.all
-  puts all_gossips
-  all_gossips[id] = [gossip_new_author, gossip_new_content]
-  puts all_gossips[id]
-  return all_gossips
-end
+  def self.edit(id, gossip_new_author, gossip_new_content)
+    all_gossips = self.all
+    all_gossips[id] = [gossip_new_author, gossip_new_content]
+  end   
 
-def update(edited_gossip)
-
-  CSV.open("db/gossip.csv", "wb") do |csv| # réécriture tout le csv à partir du tableau modifié
-      all_gossips.each do |gossip|
-        csv << [gossip.author, gossip.content]
-      end
-    end
-end
 end
